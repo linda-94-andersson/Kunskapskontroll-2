@@ -49,43 +49,43 @@
 //     }
 // }
 
-//  promth().this.toLowerCase(); converter 
+//  prompt().this.toLowerCase(); converter 
 
 
 
 
 // HER CODE
-// const wordArray = ["Programmering", "Stockholm", "Studenter", "Javascript", "Afterwork"];
+// var words = ["Programmering", "Stockholm", "Studenter", "Javascript", "Afterwork"];
 
-// let randomWord = wordArray[Math.floor(Math.random() * wordArray.length)]; 
+// var word = words[Math.floor(Math.random() * words.length)]; 
 
-// const wordSpace = []; 
-// for (let i = 0; i < randomWord.length; i++){
-//     wordSpace[i] = "_"; 
+// var answerArray = []; 
+
+// for (var i = 0; i < word.length; i++){
+//     answerArray[i] = "_"; 
 // }
 
-// let lives = 5; 
+// var remainingLetters = word.length; 
 
-// while (lives >= 5){
-//     alert(wordSpace.join(" ")); 
-//     let guess = prompt("Guess a letter:"); 
+// while (remainingLetters > 0){
+//     alert(answerArray.join(" ")); 
+//     var guess = prompt("Guess a letter:"); 
 //     if (guess == null){
 //         break; 
 //     } else if (guess.length !== 1){
 //         alert("Please enter a single letter."); 
 //     } else {
-//         for (let j = 0; j < randomWord.length; j++){
-//             if (randomWord[j] === guess){
-//                 wordSpace[j] = guess; 
-//             } else {
-//                 lives--; 
+//         for (var j = 0; j < word.length; j++){
+//             if (word[j] === guess){
+//                 answerArray[j] = guess; 
+//                 remainingLetters--;  
 //             }
 //         }
 //     }
 // }
 
-// alert(wordSpace.join(" ")); 
-// alert(`Good job! The answer was ${randomWord}`); 
+// alert(answerArray.join(" ")); 
+// alert(`Good job! The answer was ${word}`); 
 
 
 
@@ -114,25 +114,131 @@
 // }
 
 
+
+
+
+
+
+// const selectedWords = ["Programmering", "Stockholm", "Studenter", "Javascript", "Afterwork"];
+
+
+// function randomWordSelector() {
+//     let randomWord = selectedWords[Math.floor(Math.random() * selectedWords.length)];
+//     return randomWord;
+// }
+// console.log(randomWordSelector());
+
+// let randomWord = randomWordSelector();
+// const validGuess = [];
+
+// function letterConverter() {
+//     for (let i = 0; i < randomWord.length; i++) {
+//         validGuess[i] = "_";
+//         return validGuess;
+//     }
+// }
+// console.log(letterConverter());
+
+// let lives = 5;
+
+// while(lives > 0){
+//     alert(validGuess.join(" ")); 
+//     let guess = prompt(`Lives left: ${lives}`); 
+//     if (guess == null){
+//         break; 
+//     } else if (guess.length !==1){
+//         alert("Please enter a single letter."); 
+//     } else {
+//         for (let j = 0; j < randomWord.length; j++){
+//             if (randomWord[j] === guess){
+//                 validGuess[j] = guess;
+//             } else {
+//                 lives--; 
+//             }
+//         }
+//     }
+// }
+
+
+
+
+
+
+
+// for (const letterCheck of letter) {
+
+// count++;
+// if (letterCheck.includes(letter)) {
+//     answer = replaceAt(count, letter, answer);
+//     console.log(replaceAt(count, letter, answer));
+// }
+
+//wordStatus[rightGuess.indexOf(input)] = input; 
+
+// function replaceAt(index, replace, string) {
+//     return (
+//         string.substr(0, index) +
+//         replace +
+//         string.substr(index + replace.length)
+//     );
+// }
+// answer = arrayOfCharacters; 
+// let answerArray = [];
+// let count = -1;
+// let answer;
+
+
+
+
+
 const selectedWords = ["Programmering", "Stockholm", "Studenter", "Javascript", "Afterwork"];
 
+const randomWord = selectedWords[Math.floor(Math.random() * selectedWords.length)];
 
-function randomWordSelector() {
-    let randomWord = selectedWords[Math.floor(Math.random() * selectedWords.length)];
-    return randomWord;
-}
-console.log(randomWordSelector());
+console.log(randomWord);
 
-let randomWord = randomWordSelector(); 
+let lives = 5;
+let remainingLetters = randomWord.length;
 
-function letterConverter() {
-    for (let i = 0; i < randomWord.length; i++){
-        letterConverter[i] = "_"; 
-        return i; 
+const arrayOfCharacters = randomWord.split("");
+console.log(arrayOfCharacters);
+
+function startUp() {
+    for (let i = 0; i < randomWord.length; i++) {
+        arrayOfCharacters[i] = "_";
     }
 }
-console.log(letterConverter()); 
 
-const validGuess = [];
+startUp();
+do {
+    let letter = prompt(`${arrayOfCharacters.join(" ")} 
+    Lives left: ${lives}`);
+    if (letter === null) {
+        break;
+    }
+    else if (letter.length !== 1) {
+        alert("Please enter a single letter.")
+    }
+    else if (randomWord.includes(letter)) {
+        for (let i = 0; i < randomWord.length; i++) {
+            if (letter === randomWord[i]) {
+                arrayOfCharacters[i] = letter;
+                remainingLetters--;
+                console.log("r " + remainingLetters);
+                console.log("j " + i);
+            }
+        }
+    }
+    else {
+        if (!randomWord.includes(letter)) {
+            lives--;
+        }
+    }
 
-const lives = 5;
+    if (lives === 0) {
+        alert(`You have lost! The correct word was ${randomWord}`);
+    } else if (arrayOfCharacters.join("") === randomWord) {
+        alert("You have won, congratulations!")
+    }
+} while (lives > 0 && remainingLetters > 0);
+
