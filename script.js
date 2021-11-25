@@ -3,8 +3,6 @@ const selectedWords = ["Programmering", "Stockholm", "Studenter", "Javascript", 
 let randomWord = selectedWords[Math.floor(Math.random() * selectedWords.length)];
 let randomWordLow = randomWord.toLowerCase();
 
-// let letters = /[a-zA-Z]/; 
-
 //  Denna skulle ej vara med om koden skulle skickas till "kund"
 // Men är med för att man lättare ska kuna testa och se vilket ord är korrekt
 console.log(randomWord);
@@ -20,20 +18,30 @@ function startUp() {
     }
 }
 
+// if (guessInput = randomWord){
+//     let logGuess = guessInput;
+//     logGuess = prompt.apply(${logGuess}); 
+// }
+
+//Fixa logg för fel aktiga bokstäver 
 
 startUp();
 do {
     let guessInput = prompt(`${hiddenCharacters.join(" ")} \n Lives left: ${lives}`);
+
 
     if (guessInput === null) {
         alert("You have canceled the game");
         break;
     }
 
-    guessInput = guessInput.toLowerCase(); 
+    guessInput = guessInput.toLowerCase();
 
     if (guessInput.length !== 1) {
-        alert("Please enter a single letter.")
+        alert("Please enter a single letter.");
+    }
+    else if (!guessInput.search(/[^a-zA-Z]+/)) {
+        alert("Please only use letters between A and Z");
     }
     else if (randomWordLow.includes(guessInput)) {
         for (let i = 0; i < randomWord.length; i++) {

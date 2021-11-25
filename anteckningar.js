@@ -213,14 +213,18 @@
 //     arrayOfCharacters.join("") === arrayOfCharacters.join("").charAt(0).toUpperCase() + arrayOfCharacters.join("").slice(1);
 // }
 
-&& guessInput.includes(letters)
+// && guessInput.includes(letters)
 
-( && letters.includes(guessInput)) {logGuesses+=guessInput}
+// ( && letters.includes(guessInput)) {logGuesses+=guessInput}
 
-&& !letters.includes(guessInput)
+// && !letters.includes(guessInput)
 
-const aToZ = str => typeof str === "string" && /[a-z]/i.test(str);
+// const aToZ = str => typeof str === "string" && /[a-z]/i.test(str);
 
-const isAToZ = str => /[a-z]+/i.test(str) && !/[^a-z]+/i.test(str);
+// const isAToZ = str => /[a-z]+/i.test(str) && !/[^a-z]+/i.test(str);
 
-&& !(guessInput = letters)
+// && !(guessInput = letters)
+
+// Söker från ^ början av en sträng och $ slutet av en sträng
+// let letters = /^[a-zA-Z]*$/; 
+https://stackoverflow.com/questions/3532053/regular-expression-for-only-characters-a-z-a-z
