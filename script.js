@@ -12,23 +12,18 @@ let remainingLetters = randomWord.length;
 
 let hiddenCharacters = randomWord.split("");
 
+const logGuess = [];
+
 function startUp() {
     for (let i = 0; i < randomWord.length; i++) {
         hiddenCharacters[i] = "_";
     }
 }
 
-// if (guessInput = randomWord){
-//     let logGuess = guessInput;
-//     logGuess = prompt.apply(${logGuess}); 
-// }
-
-//Fixa logg för fel aktiga bokstäver 
 
 startUp();
 do {
-    let guessInput = prompt(`${hiddenCharacters.join(" ")} \n Lives left: ${lives}`);
-
+    let guessInput = prompt(`${hiddenCharacters.join(" ")} \n Lives left: ${lives}\n Guesses made: ${logGuess}`);
 
     if (guessInput === null) {
         alert("You have canceled the game");
@@ -37,22 +32,22 @@ do {
 
     guessInput = guessInput.toLowerCase();
 
-    if (guessInput.length !== 1) {
-        alert("Please enter a single letter.");
-    }
-    else if (!guessInput.search(/[^a-zA-Z]+/)) {
-        alert("Please only use letters between A and Z");
-    }
-    else if (randomWordLow.includes(guessInput)) {
+    if (!guessInput.search(/[^a-zA-Z]+/) || guessInput.length !== 1) {
+        alert("Please only use a singel letters between A to Z");
+        continue;
+    } else if (randomWordLow.includes(guessInput)) {
         for (let i = 0; i < randomWord.length; i++) {
             if (guessInput === randomWordLow[i]) {
                 hiddenCharacters[i] = randomWord[i];
                 remainingLetters--;
             }
         }
-    }
-    else {
+    } else {
         lives--;
+    }
+
+    if (!randomWordLow.includes(guessInput)) {
+        logGuess.push(guessInput);
     }
 
     if (lives === 0) {
